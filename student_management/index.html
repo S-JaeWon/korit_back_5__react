@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="name">
+    <input type="text" placeholder="age">
+    <button  onclick="handleAddClick();">추가</button>
+    <ul>
+        
+
+    </ul>
+
+    <script>
+        const students = []; // 배열 생성
+        function handleAddClick() {
+            
+            const inputs = document.querySelectorAll("input");
+
+            const student = {
+                name: inputs[0].value,
+                age: inputs[1].value
+            }
+
+            //studentList = [...studentList, student];
+
+            const studentInfoList = document.querySelector("ul");
+
+            /**
+            const newLi = document.createElement("li"); // li 라는 태그 생성 
+            const studentInfoText = 
+                document.createTextNode(`이름: ${student.name} / 나이: ${student.age}`);
+
+            const deletButton = document.createElement("button");
+            const deletButtonName= document.createTextNode("삭제");
+
+            deletButton.appendChild(deletButtonName);
+
+            newLi.appendChild(studentInfoText);
+            newLi.appendChild(deletButton);
+
+            studentInfoList.appendChild(newLi);
+
+            // 삭제 하기 위해 인덱스 번호를 알아야 하지마, newLi에 주소값이 포함 되어 있으므로 removeChild 로 삭제가 가능
+            deletButton.onclick = () => {
+                studentInfoList.removeChild(newLi);
+            }
+            */
+
+           
+           studentInfoList.innerHTML += `<li>이름: ${student.name} / 나이: ${student.age}<button class="delete-button">삭제</button></li>`;
+           
+           const deleteButtons = document.querySelectorAll(".delete-button");
+           
+           for(let i = 0; i < deleteButtons.length; i++) {
+               deleteButtons[i].onclick = () => {
+                   const li = studentInfoList.querySelectorAll("li")[i]
+                   studentInfoList.removeChild[li];
+                }
+            }
+
+            //studentInfoList.innerHTML += `<li>이름: ${student.name} / 나이: ${student.age}<button onclick="handleDeleteClick(this)">삭제</button></li>`;
+        }
+
+        /**
+        function handleDeleteClick(button) {
+            const li = button.parentElement; // 해당 버튼의 부모인 li 요소 가져오기
+            const studentInfoList = li.parentElement; // li의 부모인 ul 요소 가져오기
+            studentInfoList.removeChild(li); // ul에서 li 요소 제거
+        }
+        */
+
+        
+
+        // function StudnetInfo ({ name, age }) {
+        //         return `<li> </li>`
+        // }
+    </script>
+</body>
+</html>

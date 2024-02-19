@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <script>
+        box.innerHTML = '<div>test</div>';
+        
+        // innerHTML 사용x 
+        const box = document.querySelector(".box");
+
+        const newDiv = document.createElement("div");
+        const testText = document.createTextNode("test");
+        
+        newDiv.appendChild(testText); // <div>test</div>
+        box.appendChild(newDiv);
+        
+    </script>
+</body>
+</html>
