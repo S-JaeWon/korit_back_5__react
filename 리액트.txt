@@ -1,0 +1,25 @@
+리액트 폴더 생성:
+상위폴더에서 npx create-react-app {폴더명}
+*git에서 pull 할시 npm install 을 통해 node module 폴더만 생성
+
+라우터:
+terminal -> npm i-react-router-dom 
+
+ index.js -> 
+<BrowserRouter>
+    <App />
+ </BrowserRouter>
+: <BrowserRouter> 로 App 감싸기 (import)
+
+css 리셋:
+npm i styled-reset
+
+emotion css 라이브러리:
+npm i @emotion/react
+
+상단에 /** @jsxImportSource @emotion/react */ 
+
+리액트 아이콘
+npm i react-icons
+
+react css 외부플러그인: vscode-styled-components -> css 단축키 
