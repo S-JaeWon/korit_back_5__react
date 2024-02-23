@@ -6,7 +6,7 @@ export const layout = /** 함수로 만들어서 css 리턴*/(isShow) => css`
     top: 0;
     /** left: 0px; -> 백틱 안에 있는 문자열 이므로 $사용 */
     left: ${isShow ? "0px" : "-300px"};
-
+    z-index: 2;
     border-right: 1px solid #dbdbdb;
     width: 300px;
     height: 100%;

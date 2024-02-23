@@ -29,6 +29,7 @@ function StudentArrayPage(props) {
     const staticId = useRef(0); 
     // staticId.current 값이 변해도 렌더링 일어나지 않음
     // 재렌더링일이 발생해도 초기화 되지 않음
+    // id 값이 1씩 증가가 가능 아니라면 렌더링 될때마다 id값이 0으로 계속 초기화
 
     useEffect(() => { // studnetList 값 변화시 studnetList 출력 
         console.log(studentList);
