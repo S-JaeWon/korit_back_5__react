@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useRef, useState } from "react";
 import * as S from "./style";
-import logo512 from "./다운로드.png"
 
 function Mypage() {
     const [ preview, setPreview ] = useState("");

@@ -1,0 +1,7 @@
+파이어베이스 라이브러리
+
+npm install firebase
+
+npm i rc-progress
+
+npm i uuid
