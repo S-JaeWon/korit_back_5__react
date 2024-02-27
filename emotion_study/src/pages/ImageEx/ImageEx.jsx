@@ -3,7 +3,7 @@
 import { css } from "@emotion/react";
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { useEffect, useRef, useState } from "react";
-import { storage } from "../../configs/firebase/fireBase";
+import { storage } from "../../configs/firebase/firebaseConfig";
 import { Line } from "rc-progress";
 import { v4 as uuid } from "uuid";
 
@@ -101,39 +101,23 @@ function ImageEx() {
         const storageRef = ref(storage, `filse/test/${uuid()}_${file.name}`)
         const uploadTask = uploadBytesResumable(storageRef, file);
 
-        let promises = []; 
 
-        promises = urls.map(url => new Promise((resolve)=>{
-            uploadTask.on(
-                "state_changed", // 업로드 되고 있는 상황 
-                (snapshot) => {
-                    setProgressPercent(Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100))
-                },
-                (error) => {},
-                () => {
-                    getDownloadURL(storageRef).then(url => {
-                        localStorage.setItem("urls", url);
-                        setUrls(url);
-                        setPreviews([]); // 이미지 업로드 후 이미지를 담아둔 previews는 빈 배열로 두기
-                    })
-                }
-            );
-        }));
+    
 
-        // uploadTask.on(
-        //     "state_changed", // 업로드 되고 있는 상황 
-        //     (snapshot) => {
-        //         setProgressPercent(Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100))
-        //     },
-        //     (error) => {},
-        //     () => {
-        //         getDownloadURL(storageRef).then(urls => {
-        //             localStorage.setItem("urls", urls);
-        //             setUrls(urls);
-        //             setPreviews([]); // 이미지 업로드 후 이미지를 담아둔 previews는 빈 배열로 두기
-        //         })
-        //     }
-        // );
+        uploadTask.on(
+            "state_changed", // 업로드 되고 있는 상황 
+            (snapshot) => {
+                setProgressPercent(Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100))
+            },
+            (error) => {},
+            () => {
+                getDownloadURL(storageRef).then(urls => {
+                    localStorage.setItem("urls", urls);
+                    setUrls(urls);
+                    setPreviews([]); // 이미지 업로드 후 이미지를 담아둔 previews는 빈 배열로 두기
+                })
+            }
+        );
     }
 
     return ( // 여러장의 이미지 삽입을 위해 반복이 필요, map을 쓰기 위해 key 필수 여기선 index 사용
