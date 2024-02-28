@@ -38,7 +38,7 @@ function ImageEx2() {
     }, []); // 비어 있는 값이면 ? A (True) : B (False), A -> 빈 배열 / B -> 기존에 있는 oldFiles을 json 형태로 변환
 
     const handleFileChange = (e) => {
-        const loadFiles = Array.from(e.target.files); // filelist는 일반적인 배열(혹은 map)객체와 다름 -> Array 형태로 변환 ex)map 사용시 'map.from'
+        const loadFiles = Array.from(e.target.files); // filelist는 일반적인 배열(혹은 map)객체와 다름 -> Array 형태로 변환
 
         if(loadFiles.length === 0) {
             imgFileRef.current.value = "";
