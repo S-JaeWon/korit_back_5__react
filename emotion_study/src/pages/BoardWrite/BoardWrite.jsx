@@ -83,14 +83,19 @@ function BoardWrite() {
     const handleSubmitClick = () => {
         // const lastIndex = boardList.length - 1; // hook으로 
         // const lastId = lastIndex < 0 ? 0 : boardList[boardList.length - 1].boardId;
+        let newBoardList = [];
 
-        const board ={
-            boardId: lastId + 1,
-            boardTitle: inputValue,
-            boardContent: quillValue
-        };
+        for(let i = 0; i < 203; i++) {
+            const board ={
+                boardId: /**lastId + 1 */i + 1,
+                boardTitle: inputValue + (i + 1),
+                boardContent: quillValue
+            };
+
+           // newBoardList = [...boardList, board];
+            newBoardList = [...newBoardList, board];
+        }
         
-        const newBoardList = [...boardList, board];
         localStorage.setItem("boardList", JSON.stringify(newBoardList)); // 로컬스토리지에 위에 만든 새 배열을 덮어씀 
         alert("글 작성");
 

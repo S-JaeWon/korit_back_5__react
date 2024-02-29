@@ -54,7 +54,7 @@ export const menuItems = css`
     align-items: center;
 
     border: 1px solid #dbdbdb;
-    width: 170px;
+    width: 100px;
     height: 50px;
     margin-left: 20px;
     color: black;

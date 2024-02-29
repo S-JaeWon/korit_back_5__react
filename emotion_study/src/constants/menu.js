@@ -99,6 +99,9 @@ export const MENUS = [
         id: 8,
         path: "/board/list",
         name: "게시글 목록",
+        params: {
+            page: 1
+        },
         elemnet: <BoardList /> 
     }
 ];
