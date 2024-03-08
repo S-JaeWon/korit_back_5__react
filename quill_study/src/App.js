@@ -29,7 +29,7 @@ function App() {
 
   const [ title, setTitle ] = useState("");
   //let content = ""; // 렌더링 시 값 초기화 -> 상태로 바꿔줌 
-  const [ content, setContent ] = useState("");
+   const [ content, setContent ] = useState("");
 
   const handleTitleChange = useCallback((e) => {
     setTitle(() => e.target.value);
@@ -38,8 +38,8 @@ function App() {
   const handleQuillChange = useCallback((value) /** e아님! value 씀 */ => {
     content = value;
   }, []);
-
   console.log(content); // console창에 content에 값이 저장된걸 출력 
+
 
   return (
    <>

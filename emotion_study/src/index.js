@@ -8,10 +8,10 @@ import ComponentStudy from './pages/ComponentStudy/ComponentStudy';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ComponentStudy a={10} b={20} />
-  // <BrowserRouter>
-  //   <App />
-  // </BrowserRouter>
+  //<ComponentStudy a={10} b={20} />
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

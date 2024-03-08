@@ -1,0 +1,16 @@
+npx create-react-app {폴더명}
+
+App.js 비우고 프래그먼트만 생성 
+
+https://quilljs.com/docs/quickstart
+-> <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet" /> 복사
+-> public_index.html 에서 붙여넣기 
+
+https://www.npmjs.com/
+-> reqct-quill -> npm i react-quill
+
+App.js 프래그먼트에 <ReactQuill /> import 후 입력
+
+<ReactQuill modules={modules}/>
+
+위에 const module 하고 툴바 옵션 따로 적기 
