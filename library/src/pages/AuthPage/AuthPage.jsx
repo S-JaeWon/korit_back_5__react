@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import * as s from "./style"; 
 import SignupPage from "../SignupPage/SignupPage";
 
-function AuthPage(props) {
+function AuthPage() {
     return (
         <div css={s.layout}>
             <Routes>
