@@ -5,7 +5,7 @@ import { useMemo, useRef, useState } from "react";
 import ReactQuill from 'react-quill';
 import { QUILL_MODULES } from "../../constants/quillModules";
 import { useInput, useMaxSizeValidateInput } from "../../hooks/inputHook";
-import { useQuillInput } from "../../hooks/qillHook";
+import { useQuillInput } from "../../hooks/quillHook";
 import { useNavigate } from "react-router-dom";
 import { useLoadList } from "../../hooks/boardListHook";
 
