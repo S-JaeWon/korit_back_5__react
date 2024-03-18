@@ -77,7 +77,7 @@ function SignupPage() {
 
     const signupRequest = async (signupData) => { // fetch 대신 axios 사용 (npm i axios)
         try {// await은 try-catch문으로 감싸기
-            const response = await axios.posta; // 주소로 post 요청
+            const response = await axios.post; // 주소로 post 요청
             if(response.data) {
                 navigate("/auth/signin"); // 성공적으로 로그인시 다음과 같은 주소로 보내기
             }
