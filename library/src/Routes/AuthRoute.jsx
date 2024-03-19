@@ -1,33 +1,79 @@
 import React, { useCallback, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { principalState } from '../atoms/principalAtom';
 import AuthPage from '../pages/AuthPage/AuthPage';
 import HomePage from '../pages/HomePage/HomePage';
 import { getPrincipalRequest } from '../apis/api/principal';
+import { useQuery } from 'react-query';
+import RootSideMenuLeft from '../components/RootSideMenuLeft/RootSideMenuLeft';
+import RootHeader from '../components/RootHeader/RootHeader';
+import FullSizeLoader from '../components/FullSizeLoader/FullSizeLoader';
+import MyPage from '../pages/MyPage/MyPage';
+import PageContainer from '../components/PageContainer/PageContainer';
+
+// useQuery -> GET 요청시에 사용
+// 첫번째 매개변수 -> 배열 [ "key", dependency ]
+// 두번째 매개변수 -> 요청메소드 (asyncm await)
+// 세번째 매개변수 -> 옵션 
+/**
+ * {
+ *  retry: 0,
+ *  refetchOnWindowFocus: false,
+ *  onSuccess: 함수,
+ *  onError: 함수,
+ *  enalbe: true or false
+ * }
+ */
+
 
 function AuthRoute(props) {
-    const [ principal, setPrincipal ] = useRecoilState(principalState);
+    
+    const principalQuery = useQuery(["principalQuery"], getPrincipalRequest, 
+        { 
+            retry: 0,
+            refetchOnWindowFocus: false,
+            onSuccess: response => {
+                console.log("onSuccess")
+                console.log(response)
+            },
 
-    useEffect(() => {
-        getPrincipal();
-    }, [])
-
-    const getPrincipal = useCallback(() => {
-        getPrincipalRequest()
-        .then(response => {
-            //console.log(response); 콘솔 창에서 data 확인 가능 
-            setPrincipal(() => response.data);
-        }).catch(error => {
-            console.log(error);
+            onError: error => {
+                console.log("오류")
+                console.log(error);
+            }
         });
-    }, []);
+
+    // const [ principal, setPrincipal ] = useRecoilState(principalState);
+
+    // useEffect(() => {
+    //     getPrincipal();
+    // }, [])
+
+    // const getPrincipal = useCallback(() => {
+    //     getPrincipalRequest()
+    //     .then(response => {
+    //         //console.log(response); 콘솔 창에서 data 확인 가능 
+    //         setPrincipal(() => response.data);
+    //     }).catch(error => {
+    //         console.log(error);
+    //     });
+    // }, []);
 
     return (
-        <Routes>
-            <Route path="/auth/*" element={ < AuthPage /> } />
-            <Route path="" element={ < HomePage /> } />
-        </Routes>
+        <>
+            <RootSideMenuLeft />
+            <RootHeader />
+            <PageContainer>
+                {
+                    principalQuery.isLoading 
+                    ? <FullSizeLoader size={30} />
+                    : <Routes>
+                        <Route path="/auth/*" element={ < AuthPage /> } />
+                        <Route path="/" element={ < HomePage /> } />
+                        <Route path="/account/mypage" element={ < MyPage /> } />
+                    </Routes>
+                }
+            </PageContainer>
+        </>
     );
 }
 
