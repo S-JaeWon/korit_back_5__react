@@ -11,8 +11,8 @@ export const background = css`
 `;
 
 export const layout = css`
-    position: relative;
     box-sizing: border-box;
+    position: relative;
     margin: 100px auto;
     border: 2px solid #fafafa;
     border-radius: 30px;
