@@ -1,33 +1,43 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style"; 
 
-import { Link } from "react-router-dom";
 import AuthPageInput from "../../components/AuthPageInput/AuthPageInput";
 import RightTopButton from "../../components/RightTopButton/RightTopButton";
 import { useInput } from "../../hooks/useInput";
-import { signinRequest } from "../../apis/api/signin";
+import { useMutation } from "react-query";
+import { oAuth2MergeRequest } from "../../apis/api/oAuth2Merge";
+import { useSearchParams } from "react-router-dom";
 
-function SigninPage(props) {
+function OAuth2MergePage() {
+    const [ searchParams ] = useSearchParams();
     const [ username, usernameChange ] = useInput();
     const [ password, passwordChange ] = useInput();
 
-    const handleSigninSubmit = () => {
-        signinRequest ({
-            username,
-            password
-        }).then(response => {
-            const accessToken = response.data;
-            localStorage.setItem("AccessToken", accessToken); // 로컬스토리지에 토큰을 넣어줌
-            window.location.replace("/") 
-        }).catch(error => {
+    const oAuth2MergeMutation = useMutation({
+        mutationKey: "oAuth2MergeMutation",
+        mutationFn: oAuth2MergeRequest,
+        onSuccess: response => {
+            alert("계정 통합이 완료되었습니다.\n다시 로그인 하세요.")
+            window.location.replace("/auth/signin");
+        },
+        onError: error => {
             alert(error.response.data);
-        })
+        }
+    })
+
+    const handleSigninSubmit = () => {
+        oAuth2MergeMutation.mutate({
+            username,
+            password,
+            oauth2Name: searchParams.get("name"),
+            providerName: searchParams.get("provider")
+        });
     }
 
     return (
         <>
-            <div css={s.header}>
-                <h1>로그인</h1>
+             <div css={s.header}>
+                <h2>계정 통합 로그인 </h2>
                 <RightTopButton onClick={handleSigninSubmit}>로그인하기</RightTopButton>
             </div>
             <AuthPageInput 
@@ -44,14 +54,8 @@ function SigninPage(props) {
                 value={password} 
                 onChange={passwordChange} 
             />
-            <Link to={"/auth/signup"}>회원가입</Link>
-            <div>
-                <a href="http://localhost:8080/oauth2/authorization/kakao">카카오로그인</a>
-                <a href="http://localhost:8080/oauth2/authorization/google">구글로그인</a>
-                <a href="http://localhost:8080/oauth2/authorization/naver">네이버로그인</a>
-            </div>
         </>
     );
 }
 
-export default SigninPage;
+export default OAuth2MergePage;

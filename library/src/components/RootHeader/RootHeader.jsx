@@ -49,11 +49,12 @@ function RootHeader() {
 
     const handleLogoutClick = () => {
         localStorage.removeItem("AccessToken"); // Authorization 에는 여전히 토큰 정보가 있으므로 응답은 200임
-        instance.interceptors.request.use((config) => { // Authorization 을 null 로 바꿈
-            config.headers.Authorization = null;
-            return config;
-        });
-        queryClient.refetchQueries("principalQuery"); 
+        // instance.interceptors.request.use((config) => { // Authorization 을 null 로 바꿈
+        //     config.headers.Authorization = null;
+        //     return config;
+        // });
+        // queryClient.refetchQueries("principalQuery"); 
+        window.location.replace("/auth/signin");
     }
 
     return (
