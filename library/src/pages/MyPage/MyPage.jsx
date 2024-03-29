@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { useMutation, useQueryClient } from "react-query";
 import * as s from "./style"; 
+
+import { useMutation, useQueryClient } from "react-query";
 import { sendAuthMailRequest } from "../../apis/api/sendAuthMail";
 import FullSizeLoader from "../../components/FullSizeLoader/FullSizeLoader";
 import { FaRegCircleCheck } from "react-icons/fa6";
