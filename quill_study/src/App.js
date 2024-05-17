@@ -1,3 +1,6 @@
+/** @jsxImportSource @emotion/react */
+
+import { css } from "@emotion/react";
 import './App.css';
 import ReactQuill from 'react-quill';
 import { useCallback, useState } from 'react';
@@ -40,9 +43,15 @@ function App() {
   }, []);
   console.log(content); // console창에 content에 값이 저장된걸 출력 
 
+  const container = css`
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+  `;
 
   return (
    <>
+    <h1 css={container}>제목</h1>
     <input type="text" onChange={handleTitleChange} />
     <ReactQuill modules={modules} onChange={handleQuillChange} />
    </>
